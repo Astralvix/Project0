@@ -1,34 +1,35 @@
 package com.revature.dao;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Scanner;
 
 import com.revature.pojos.Car;
+import com.revature.pojos.CarLot;
+import com.revature.pojos.User;
+import com.revature.service.CarService;
 
-public class CarDAOSerialization implements CarDAO {
+public class CarLotDAOSerialization implements CarLotDao{
 
-	public void createCar(Car c) {
+	@Override
+	public void createLot() {
 		// TODO Auto-generated method stub
-		String fileName;
+		CarLot carlot = new CarLot();
+		String fileName = "CarLOT.dat";
 		FileOutputStream fos = null;
 		ObjectOutputStream oos = null;
 		
-		if(c.getVinNo() !=null) {
-			fileName = c.getVinNo()+".dat";
-		}
-		else {
-			fileName = "MysteryMachine.dat";
-		}
-		
+		//Scanner keyboard = new Scanner (System.in);
 		try {
 			fos = new FileOutputStream(fileName);
 			oos = new ObjectOutputStream(fos);
 			
-			oos.writeObject(c);
+			oos.writeObject(carlot);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -58,29 +59,62 @@ public class CarDAOSerialization implements CarDAO {
 		
 	}
 
-	public Car readCar(String vin) {
+	@Override
+	public CarLot readLot() {
 		// TODO Auto-generated method stub
-String fileName = vin+".dat";
+		String fileName = "CarLot.dat";
+		CarLot userCHK = null;
+		File tmpDir = new File(fileName);
+		boolean fileExist = tmpDir.exists();
+		while(fileExist == false) {
+			System.out.println("This carlot doesnt exist");
+				break;
+			
+			}
+		if(fileExist == true){
 		
-		Car ret = null;
-		//try with resources
 		try (FileInputStream fis = new FileInputStream(fileName);
 				ObjectInputStream ois = new ObjectInputStream(fis);){
 			
 			try {
-				ret = (Car) ois.readObject();
+				userCHK = (CarLot) ois.readObject();
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
+			System.out.println("The file was not found!");
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			}
+		
 		}
-				return ret;
+		return userCHK;		
 	}
 
+	@Override
+	public void checkLot() {
+		CarLot carlot = new CarLot();
+		String fileName = "CarLOT.dat";
+		File tmpDir = new File(fileName);
+		boolean fileExist = tmpDir.exists();
+		
+		if(fileExist == true) {
+			System.out.println("Lot exists!");
+		}
+		if(fileExist == false) {
+			System.out.println("Lot doesn't exist!");
+		}
+		
+		}
+
+	@Override
+	public CarLot addCar() {
+		// TODO Auto-generated method stub
+		
+		return null;
+	}
 }

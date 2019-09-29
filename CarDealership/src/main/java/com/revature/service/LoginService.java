@@ -4,7 +4,7 @@ import com.revature.pojos.User;
 
 public interface LoginService {
 
-	public boolean checkLogin(User user);
+	public void createUser();
 		
-		
+	public boolean checkLogin();	
 }

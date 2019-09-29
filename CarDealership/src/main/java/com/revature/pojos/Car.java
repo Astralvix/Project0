@@ -2,10 +2,10 @@ package com.revature.pojos;
 
 import java.io.Serializable;
 
-public class Car implements Serializable{
+public class Car {
 	
 	private String model;
-	private int year;
+	private String year;
 	private String vinNo;
 	private String color;
 	private String make;
@@ -18,7 +18,9 @@ public class Car implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Car(String model, int year, String vinNo, String color, String make, String carType) {
+	
+	public Car(String model, String year, String vinNo, String color, String make, String carType, double price,
+			String owner) {
 		super();
 		this.model = model;
 		this.year = year;
@@ -26,7 +28,14 @@ public class Car implements Serializable{
 		this.color = color;
 		this.make = make;
 		this.carType = carType;
+		this.price = price;
+		this.owner = owner;
 	}
+
+
+
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -35,8 +44,12 @@ public class Car implements Serializable{
 		result = prime * result + ((color == null) ? 0 : color.hashCode());
 		result = prime * result + ((make == null) ? 0 : make.hashCode());
 		result = prime * result + ((model == null) ? 0 : model.hashCode());
+		result = prime * result + ((owner == null) ? 0 : owner.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(price);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((vinNo == null) ? 0 : vinNo.hashCode());
-		result = prime * result + year;
+		result = prime * result + ((year == null) ? 0 : year.hashCode());
 		return result;
 	}
 	@Override
@@ -68,19 +81,29 @@ public class Car implements Serializable{
 				return false;
 		} else if (!model.equals(other.model))
 			return false;
+		if (owner == null) {
+			if (other.owner != null)
+				return false;
+		} else if (!owner.equals(other.owner))
+			return false;
+		if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
+			return false;
 		if (vinNo == null) {
 			if (other.vinNo != null)
 				return false;
 		} else if (!vinNo.equals(other.vinNo))
 			return false;
-		if (year != other.year)
+		if (year == null) {
+			if (other.year != null)
+				return false;
+		} else if (!year.equals(other.year))
 			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
 		return "Car [model=" + model + ", year=" + year + ", vinNo=" + vinNo + ", color=" + color + ", make=" + make
-				+ ", carType=" + carType + "]";
+				+ ", carType=" + carType + ", price=" + price + ", owner=" + owner + "]";
 	}
 	public String getModel() {
 		return model;
@@ -88,10 +111,10 @@ public class Car implements Serializable{
 	public void setModel(String model) {
 		this.model = model;
 	}
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
-	public void setYear(int year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 	public String getVinNo() {

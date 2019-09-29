@@ -8,17 +8,16 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
-import com.revature.pojos.User;
-import com.revature.pojos.User.Role;
 
-public class LoginServiceImpl implements LoginService {
+import com.revature.pojos.User;
+
+public class EmployeeServiceImpl implements LoginService {
 
 	@Override
 	public void createUser() {
 		// TODO Auto-generated method stub
 		User user = new User();
 		String fileName;
-		
 		FileOutputStream fos = null;
 		ObjectOutputStream oos = null;
 		Scanner keyboard = new Scanner (System.in);
@@ -26,7 +25,7 @@ public class LoginServiceImpl implements LoginService {
 		String lastname; 
 		String username; 
 		String password; 
-		
+	
 		System.out.println("Enter Desired Username");
 		username = keyboard.nextLine();
 		File tmpDir = new File(username +".dat");
@@ -52,7 +51,7 @@ public class LoginServiceImpl implements LoginService {
 			System.out.println("Choose your password");
 			password = keyboard.nextLine();
 			user.setPassWord(password);
-			user.setRole(User.Role.CUSTOMER);
+			user.setRole(User.Role.EMPLOYEE);
 			
 			try {
 				fos = new FileOutputStream(fileName);
@@ -93,11 +92,12 @@ public class LoginServiceImpl implements LoginService {
 			
 		}
 		
+		
 	}
 
 	@Override
 	public boolean checkLogin() {
-		
+		// TODO Auto-generated method stub
 		User userCHK = null;
 		Scanner keyboard = new Scanner (System.in);
 		String username;
@@ -144,5 +144,8 @@ public class LoginServiceImpl implements LoginService {
 			System.out.println("It was false");
 		return false;
 		}
-	}
+	}	
+	
 }
+
+

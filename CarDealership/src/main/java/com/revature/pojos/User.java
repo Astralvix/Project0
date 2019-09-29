@@ -1,6 +1,8 @@
 package com.revature.pojos;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable{
 
 	public enum Role{
 		CUSTOMER, EMPLOYEE;
@@ -23,6 +25,8 @@ public class User {
 		this.role = role;
 		
 	}
+	
+
 	public String getUserName() {
 		return userName;
 	}
@@ -47,7 +51,6 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
 	public Role getRole() {
 		return role;
 	}
