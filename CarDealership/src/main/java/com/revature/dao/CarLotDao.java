@@ -8,8 +8,8 @@ public interface CarLotDao {
 	
 	public CarLot readLot();
 	
-	public void checkLot();
+	public boolean checkLot();
 	
-	public CarLot addCar();
+	public void addCar();
 
 }

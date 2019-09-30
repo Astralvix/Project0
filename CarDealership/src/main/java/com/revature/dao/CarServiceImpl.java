@@ -21,7 +21,7 @@ public class CarServiceImpl implements CarService {
 		Scanner keyboard = new Scanner (System.in);
 		 String model;
 		 String year;
-		 String check;
+		 char check;
 		 String vinNo;
 		 String color;
 		 String make;
@@ -50,17 +50,17 @@ public class CarServiceImpl implements CarService {
 		price = keyboard.nextDouble();
 		c.setPrice(price);
 		System.out.println("Does this car have an owner?: y/n");
-		check = keyboard.nextLine().toLowerCase();
-		while(check != "n" || check != "y") {
+		check = keyboard.next().toLowerCase().charAt(0);
+		while(check != 'n' || check != 'n') {
 			System.out.println("Invalid choice!");
 			System.out.println("Does this car have an owner?: y/n");
-			check = keyboard.nextLine().toLowerCase();
+			check = keyboard.next().toLowerCase().charAt(0);
 		}
-		if(check.equals("n")) {
+		if(check == 'n') {
 			
 			c.setOwner("");
 		}
-		if(check.equals("y")){
+		if(check == 'y'){
 		System.out.println("Owner:");
 		owner = keyboard.nextLine();
 		c.setOwner(owner);

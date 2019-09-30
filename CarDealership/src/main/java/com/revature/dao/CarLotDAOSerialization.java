@@ -15,11 +15,13 @@ import com.revature.pojos.User;
 import com.revature.service.CarService;
 
 public class CarLotDAOSerialization implements CarLotDao{
+	
+	public CarLot carLot = new CarLot();
+	public CarService CS = new CarServiceImpl();
 
 	@Override
 	public void createLot() {
 		// TODO Auto-generated method stub
-		CarLot carlot = new CarLot();
 		String fileName = "CarLOT.dat";
 		FileOutputStream fos = null;
 		ObjectOutputStream oos = null;
@@ -29,7 +31,7 @@ public class CarLotDAOSerialization implements CarLotDao{
 			fos = new FileOutputStream(fileName);
 			oos = new ObjectOutputStream(fos);
 			
-			oos.writeObject(carlot);
+			oos.writeObject(carLot);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,8 +64,7 @@ public class CarLotDAOSerialization implements CarLotDao{
 	@Override
 	public CarLot readLot() {
 		// TODO Auto-generated method stub
-		String fileName = "CarLot.dat";
-		CarLot userCHK = null;
+		String fileName = "CarLOT.dat";
 		File tmpDir = new File(fileName);
 		boolean fileExist = tmpDir.exists();
 		while(fileExist == false) {
@@ -77,7 +78,7 @@ public class CarLotDAOSerialization implements CarLotDao{
 				ObjectInputStream ois = new ObjectInputStream(fis);){
 			
 			try {
-				userCHK = (CarLot) ois.readObject();
+				carLot = (CarLot) ois.readObject();
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -92,29 +93,36 @@ public class CarLotDAOSerialization implements CarLotDao{
 			}
 		
 		}
-		return userCHK;		
+		return carLot;		
 	}
 
 	@Override
-	public void checkLot() {
-		CarLot carlot = new CarLot();
+	public boolean checkLot() {
 		String fileName = "CarLOT.dat";
+		
 		File tmpDir = new File(fileName);
 		boolean fileExist = tmpDir.exists();
 		
 		if(fileExist == true) {
 			System.out.println("Lot exists!");
+			
 		}
 		if(fileExist == false) {
 			System.out.println("Lot doesn't exist!");
-		}
 		
 		}
+		return fileExist;
+	}
 
 	@Override
-	public CarLot addCar() {
+	public void addCar() {
 		// TODO Auto-generated method stub
-		
-		return null;
+		boolean chk = checkLot();
+		if(chk == false) {
+			System.out.println("Check your lot");
+		}else {
+		carLot.getCarLot().add(CS.createCar());
+		createLot();
+		}
 	}
 }
