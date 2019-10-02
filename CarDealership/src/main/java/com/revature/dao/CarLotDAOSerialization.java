@@ -18,6 +18,7 @@ public class CarLotDAOSerialization implements CarLotDao{
 	
 	public CarLot carLot = new CarLot();
 	public CarService CS = new CarServiceImpl();
+	public Car c = new Car();
 
 	@Override
 	public void createLot() {
@@ -121,8 +122,35 @@ public class CarLotDAOSerialization implements CarLotDao{
 		if(chk == false) {
 			System.out.println("Check your lot");
 		}else {
+		readLot();
 		carLot.getCarLot().add(CS.createCar());
 		createLot();
 		}
+	}
+
+	@Override
+	public void deleteCar() {
+		// TODO Auto-generated method stub
+		Scanner keyboard = new Scanner (System.in);
+		String vin;
+		System.out.println("Enter the vin No: ");
+		vin = keyboard.nextLine();
+		boolean chk = checkLot();
+		if(chk == false) {
+			System.out.println("Check your lot");
+		}else {
+		readLot();
+		for(int x = 0; x <carLot.getCarLot().size();x++) {
+			if(vin.equals(carLot.getCarLot().get(x).getVinNo())) {
+				carLot.getCarLot().remove(x);
+				createLot();
+				}else {
+					System.out.println("Car does not exist!");
+				}
+		}
+		
+		
+		}
+
 	}
 }

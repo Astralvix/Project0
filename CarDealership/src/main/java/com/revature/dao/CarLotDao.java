@@ -11,5 +11,7 @@ public interface CarLotDao {
 	public boolean checkLot();
 	
 	public void addCar();
+	
+	public void deleteCar();
 
 }

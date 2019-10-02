@@ -2,7 +2,7 @@ package com.revature.pojos;
 
 import java.io.Serializable;
 
-public class Car {
+public class Car implements Serializable {
 	
 	private String model;
 	private String year;

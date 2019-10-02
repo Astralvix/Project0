@@ -30,11 +30,12 @@ public class Driver {
 		//LS.createUser();
 		//LS.checkLogin();
 		
-		CLD.checkLot();
-		CLD.createLot();
+		//CLD.checkLot();
+		//CLD.createLot();
 		
-		CLD.addCar();
-		CLD.readLot();
+		//CLD.addCar();
+		//CLD.deleteCar();
+		//System.out.println(CLD.readLot());
 		
 		
 	}
