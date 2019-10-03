@@ -2,7 +2,7 @@ package com.revature.driver;
 
 import com.revature.dao.CarLotDAOSerialization;
 import com.revature.dao.CarLotDao;
-import com.revature.dao.CarServiceImpl;
+import com.revature.service.CarServiceImpl;
 import com.revature.pojos.User;
 import com.revature.service.CarService;
 import com.revature.service.EmployeeServiceImpl;
@@ -36,6 +36,8 @@ public class Driver {
 		//CLD.addCar();
 		//CLD.deleteCar();
 		//System.out.println(CLD.readLot());
+		CLD.viewLot();
+		CLD.viewLotCust();
 		
 		
 	}

@@ -1,5 +1,5 @@
 package com.revature.service;
-
+import static com.revature.util.LoggerUtil.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -32,8 +32,8 @@ public class LoginServiceImpl implements LoginService {
 		File tmpDir = new File(username +".dat");
 		boolean fileExist = tmpDir.exists();
 		while(fileExist == true) {
-			System.out.println("This username is taken");
-			System.out.println("Enter Desired Username");
+			warn("This username is taken");
+			warn("Enter Desired Username");
 			username = keyboard.nextLine();
 			tmpDir = new File(username +".dat");
 			fileExist = tmpDir.exists();
@@ -89,7 +89,7 @@ public class LoginServiceImpl implements LoginService {
 			
 		}else {
 			
-			System.out.println("This user already exists!");
+			error("This user already exists!");
 			
 		}
 		
@@ -102,13 +102,13 @@ public class LoginServiceImpl implements LoginService {
 		Scanner keyboard = new Scanner (System.in);
 		String username;
 		String password;
-		System.out.println("Check if username exists");
+		trace("Check if username exists");
 		username = keyboard.nextLine();
 		File tmpDir = new File(username +".dat");
 		boolean fileExist = tmpDir.exists();
 		while(fileExist == false) {
-			System.out.println("This username isnt registered");
-			System.out.println("Check if username exists");
+			warn("This username isnt registered");
+			warn("Check if username exists");
 			username = keyboard.nextLine();
 			tmpDir = new File(username +".dat");
 			fileExist = tmpDir.exists();
@@ -131,17 +131,17 @@ public class LoginServiceImpl implements LoginService {
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			System.out.println("The file was not found!");
+			error("The file was not found!");
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(username.equals(userCHK.getUserName()) && password.equals(userCHK.getPassWord())) {
-			System.out.println("It was true");
+			trace("It was true");
 			return true;
 		}else {
-			System.out.println("It was false");
+			trace("It was false");
 		return false;
 		}
 	}

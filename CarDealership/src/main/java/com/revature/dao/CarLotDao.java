@@ -13,5 +13,9 @@ public interface CarLotDao {
 	public void addCar();
 	
 	public void deleteCar();
+	
+	public void viewLot();
+	
+	public void viewLotCust();
 
 }

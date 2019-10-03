@@ -1,5 +1,5 @@
 package com.revature.service;
-
+import static com.revature.util.LoggerUtil.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

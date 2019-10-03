@@ -1,5 +1,5 @@
 package com.revature.dao;
-
+import static com.revature.util.LoggerUtil.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -13,12 +13,13 @@ import com.revature.pojos.Car;
 import com.revature.pojos.CarLot;
 import com.revature.pojos.User;
 import com.revature.service.CarService;
+import com.revature.service.CarServiceImpl;
 
 public class CarLotDAOSerialization implements CarLotDao{
 	
 	public CarLot carLot = new CarLot();
 	public CarService CS = new CarServiceImpl();
-	public Car c = new Car();
+	//public Car c = new Car();
 
 	@Override
 	public void createLot() {
@@ -153,4 +154,43 @@ public class CarLotDAOSerialization implements CarLotDao{
 		}
 
 	}
+
+	@Override
+	public void viewLot() {
+		// TODO Auto-generated method stub
+		readLot();
+		for(int x = 0; x <carLot.getCarLot().size();x++) {
+		System.out.println("Car Make: " + carLot.getCarLot().get(x).getMake());	
+		System.out.println("Car Model: " + carLot.getCarLot().get(x).getModel());	
+		System.out.println("Car Year: " + carLot.getCarLot().get(x).getYear());	
+		System.out.println("Car Color: " +carLot.getCarLot().get(x).getColor());	
+		System.out.println("Car Price: $" +carLot.getCarLot().get(x).getPrice());	
+		System.out.println("Car VinNo: " +carLot.getCarLot().get(x).getVinNo());
+		System.out.println("Car Type: " +carLot.getCarLot().get(x).getCarType());
+		System.out.println("Car Owner: " +carLot.getCarLot().get(x).getOwner());
+		System.out.println("-------------------");
+		}
+		
+	}
+
+	@Override
+	public void viewLotCust() {
+		// TODO Auto-generated method stub
+		readLot();
+		for(int x = 0; x <carLot.getCarLot().size();x++) {
+			if(carLot.getCarLot().get(x).getOwner().equals("")) {
+				System.out.println("Car Make: " + carLot.getCarLot().get(x).getMake());	
+				System.out.println("Car Model: " + carLot.getCarLot().get(x).getModel());	
+				System.out.println("Car Year: " + carLot.getCarLot().get(x).getYear());	
+				System.out.println("Car Color: " +carLot.getCarLot().get(x).getColor());	
+				System.out.println("Car Price: $" +carLot.getCarLot().get(x).getPrice());	
+				System.out.println("Car VinNo: " +carLot.getCarLot().get(x).getVinNo());
+				System.out.println("Car Type: " +carLot.getCarLot().get(x).getCarType());
+				System.out.println("Car Owner: " +carLot.getCarLot().get(x).getOwner());
+				System.out.println("-------------------");
+				}else {
+					
+				}
+			}
+		}
 }
