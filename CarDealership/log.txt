@@ -1,0 +1,4 @@
+2019-10-03 18:08:44 TRACE root:29 - Offer List does exist
+2019-10-03 18:09:22 TRACE root:29 - Offer has been made of: 200.0
+2019-10-03 19:17:35 TRACE root:29 - Offer List does exist
+2019-10-03 20:25:46 TRACE root:29 - Lot exists!

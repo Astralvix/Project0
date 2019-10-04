@@ -34,6 +34,7 @@ public class CarLotDAOSerialization implements CarLotDao{
 			oos = new ObjectOutputStream(fos);
 			
 			oos.writeObject(carLot);
+			trace("Carlot overwritten");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,6 +71,7 @@ public class CarLotDAOSerialization implements CarLotDao{
 		File tmpDir = new File(fileName);
 		boolean fileExist = tmpDir.exists();
 		while(fileExist == false) {
+			warn("Carlot doesn't exist");
 			System.out.println("This carlot doesnt exist");
 				break;
 			
@@ -81,6 +83,7 @@ public class CarLotDAOSerialization implements CarLotDao{
 			
 			try {
 				carLot = (CarLot) ois.readObject();
+				trace("Carlot has been read");
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -106,11 +109,11 @@ public class CarLotDAOSerialization implements CarLotDao{
 		boolean fileExist = tmpDir.exists();
 		
 		if(fileExist == true) {
-			System.out.println("Lot exists!");
+			trace("Lot exists!");
 			
 		}
 		if(fileExist == false) {
-			System.out.println("Lot doesn't exist!");
+			warn("Lot doesn't exist!");
 		
 		}
 		return fileExist;
@@ -122,10 +125,12 @@ public class CarLotDAOSerialization implements CarLotDao{
 		boolean chk = checkLot();
 		if(chk == false) {
 			System.out.println("Check your lot");
+			warn("Check the lot");
 		}else {
 		readLot();
 		carLot.getCarLot().add(CS.createCar());
 		createLot();
+		trace("Car has been added!");
 		}
 	}
 
@@ -138,7 +143,7 @@ public class CarLotDAOSerialization implements CarLotDao{
 		vin = keyboard.nextLine();
 		boolean chk = checkLot();
 		if(chk == false) {
-			System.out.println("Check your lot");
+			warn("Check your lot");
 		}else {
 		readLot();
 		for(int x = 0; x <carLot.getCarLot().size();x++) {
@@ -146,7 +151,8 @@ public class CarLotDAOSerialization implements CarLotDao{
 				carLot.getCarLot().remove(x);
 				createLot();
 				}else {
-					System.out.println("Car does not exist!");
+					System.out.println("Car doesn't exist!");
+					warn("Car does not exist!");
 				}
 		}
 		
@@ -190,6 +196,30 @@ public class CarLotDAOSerialization implements CarLotDao{
 				System.out.println("-------------------");
 				}else {
 					
+				}
+			}
+		}
+
+	@Override
+	public void setOwner() {
+		// TODO Auto-generated method stub
+		Scanner keyboard = new Scanner (System.in);
+		String vin;
+		String owner;
+		System.out.println("Enter the vin No: ");
+		vin = keyboard.nextLine();
+		boolean chk = checkLot();
+		if(chk == false) {
+			warn("Check your lot");
+		}else {
+		readLot();
+		for(int x = 0; x <carLot.getCarLot().size();x++) {
+			if(vin.equals(carLot.getCarLot().get(x).getVinNo())) {
+				System.out.println("Set the owner: ");
+				owner = keyboard.nextLine();
+				carLot.getCarLot().get(x).setOwner(owner);
+				createLot();	
+					}
 				}
 			}
 		}

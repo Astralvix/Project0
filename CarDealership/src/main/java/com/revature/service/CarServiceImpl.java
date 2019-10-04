@@ -58,17 +58,18 @@ public class CarServiceImpl implements CarService {
 			check = keyboard.next().toLowerCase();
 		}
 		if(check.equals("no")) {
-			
+			trace("No owner has been set");
 			c.setOwner("");
 		}
 		if(check.equals("yes")){
 		System.out.println("Owner:");
 		owner = keyboard.nextLine();
 		c.setOwner(owner);
+		trace("Owner has been set by name: "+ c.getOwner());
 		}
 		
 		keyboard.close();
-		
+		trace("Car has been made");
 		return c;
 	}
 

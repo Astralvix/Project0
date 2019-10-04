@@ -17,5 +17,7 @@ public interface CarLotDao {
 	public void viewLot();
 	
 	public void viewLotCust();
+	
+	public void setOwner();
 
 }

@@ -9,4 +9,14 @@ public interface OfferListDAO {
 	public OfferList readOfferList();
 	
 	public boolean checkOfferList();
+	
+	public void addOffer();
+	
+	public void deleteOffer();
+	
+	public void viewOfferList();
+	
+	public void viewUserOffer();
+	
+	public void setOfferStatus();
 }
