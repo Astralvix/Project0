@@ -2,3 +2,20 @@
 2019-10-03 18:09:22 TRACE root:29 - Offer has been made of: 200.0
 2019-10-03 19:17:35 TRACE root:29 - Offer List does exist
 2019-10-03 20:25:46 TRACE root:29 - Lot exists!
+2019-10-04 10:05:39 TRACE root:29 - Lot exists!
+2019-10-04 10:06:30 TRACE root:29 - Lot exists!
+2019-10-04 10:06:31 TRACE root:29 - Carlot has been read
+2019-10-04 10:07:20 TRACE root:29 - No owner has been set
+2019-10-04 10:07:20 TRACE root:29 - Car has been made
+2019-10-04 10:07:20 TRACE root:29 - Carlot overwritten
+2019-10-04 10:07:20 TRACE root:29 - Car has been added!
+2019-10-04 10:07:20 TRACE root:29 - Carlot has been read
+2019-10-04 10:07:51 TRACE root:29 - Offer List does exist
+2019-10-04 10:08:04 TRACE root:29 - Offer has been made of: 3.0
+2019-10-04 10:09:05 TRACE root:29 - Offer List does exist
+2019-10-04 10:09:05 WARN  root:18 - Offer does not exist!
+2019-10-04 10:09:40 TRACE root:29 - Carlot has been read
+2019-10-04 10:09:53 TRACE root:29 - Lot exists!
+2019-10-04 10:09:53 TRACE root:29 - Carlot has been read
+2019-10-04 10:09:59 TRACE root:29 - Carlot overwritten
+2019-10-04 10:09:59 TRACE root:29 - Carlot has been read

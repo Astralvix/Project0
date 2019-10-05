@@ -40,8 +40,8 @@ public class Driver {
 		
 		
 		
-		LS.createUser();
-		LS.checkLogin();
+		//LS.createUser();
+		//LS.checkLogin();
 		
 		
 		//CLD.checkLot();
@@ -57,9 +57,9 @@ public class Driver {
 		//OFD.viewOfferList();
 		//OFD.setOfferStatus();
 		//OFD.viewOfferList();
-		//CLD.viewLot();
-		//CLD.setOwner();
-		//CLD.viewLot();
+		CLD.viewLot();
+		CLD.setOwner();
+		CLD.viewLot();
 		
 		
 	}
