@@ -8,6 +8,7 @@ public class Offerings implements Serializable{
 	public enum Status{
 		PENDING,REJECTED,ACCEPTED
 	}
+	private int offer_id;
 	private String userName;
 	private String vinNo;
 	private double offer;
@@ -18,8 +19,9 @@ public class Offerings implements Serializable{
 	}
 	
 	
-	public Offerings(String userName, String vinNo, double offer, Status status) {
+	public Offerings(int offer_id, String userName, String vinNo, double offer, Status status) {
 		super();
+		this.offer_id = offer_id;
 		this.userName = userName;
 		this.vinNo = vinNo;
 		this.offer = offer;
@@ -51,6 +53,17 @@ public class Offerings implements Serializable{
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+
+	public int getOffer_id() {
+		return offer_id;
+	}
+
+
+	public void setOffer_id(int offer_id) {
+		this.offer_id = offer_id;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -58,11 +71,14 @@ public class Offerings implements Serializable{
 		long temp;
 		temp = Double.doubleToLongBits(offer);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + offer_id;
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		result = prime * result + ((vinNo == null) ? 0 : vinNo.hashCode());
 		return result;
 	}
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -73,6 +89,8 @@ public class Offerings implements Serializable{
 			return false;
 		Offerings other = (Offerings) obj;
 		if (Double.doubleToLongBits(offer) != Double.doubleToLongBits(other.offer))
+			return false;
+		if (offer_id != other.offer_id)
 			return false;
 		if (status != other.status)
 			return false;
@@ -88,10 +106,15 @@ public class Offerings implements Serializable{
 			return false;
 		return true;
 	}
+
+
 	@Override
 	public String toString() {
-		return "Offerings [userName=" + userName + ", vinNo=" + vinNo + ", offer=" + offer + ", status=" + status + "]";
+		return "Offerings [offer_id=" + offer_id + ", userName=" + userName + ", vinNo=" + vinNo + ", offer=" + offer
+				+ ", status=" + status + "]";
 	}
+
+
 	
 
 }
