@@ -4,19 +4,17 @@ import java.io.Serializable;
 
 public class User implements Serializable{
 
-	public enum Role{
-		CUSTOMER, EMPLOYEE;
-	}
+	
 	private String userName;
 	private String passWord;
 	private String firstName;
 	private String lastName;
-	private Role role;
+	private String role;
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public User(String userName, String passWord, String firstName, String lastName, Role role) {
+	public User(String userName, String passWord, String firstName, String lastName, String role) {
 		super();
 		this.userName = userName;
 		this.passWord = passWord;
@@ -51,10 +49,10 @@ public class User implements Serializable{
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public Role getRole() {
+	public String getRole() {
 		return role;
 	}
-	public void setRole(Role role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 	@Override
@@ -97,7 +95,10 @@ public class User implements Serializable{
 				return false;
 		} else if (!passWord.equals(other.passWord))
 			return false;
-		if (role != other.role)
+		if (role == null) {
+			if (other.role != null)
+				return false;
+		} else if (!role.equals(other.role))
 			return false;
 		if (userName == null) {
 			if (other.userName != null)
@@ -106,7 +107,6 @@ public class User implements Serializable{
 			return false;
 		return true;
 	}
-
 	
 	
 }

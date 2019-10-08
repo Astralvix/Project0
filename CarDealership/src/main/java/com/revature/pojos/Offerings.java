@@ -5,21 +5,19 @@ import java.io.Serializable;
 public class Offerings implements Serializable{
 	
 	
-	public enum Status{
-		PENDING,REJECTED,ACCEPTED
-	}
+	
 	private int offer_id;
 	private String userName;
 	private String vinNo;
 	private double offer;
-	private Status status;
+	private String status;
 	public Offerings() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
 	
-	public Offerings(int offer_id, String userName, String vinNo, double offer, Status status) {
+	public Offerings(int offer_id, String userName, String vinNo, double offer, String status) {
 		super();
 		this.offer_id = offer_id;
 		this.userName = userName;
@@ -47,10 +45,10 @@ public class Offerings implements Serializable{
 	public void setOffer(double offer) {
 		this.offer = offer;
 	}
-	public Status getStatus() {
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(Status status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 

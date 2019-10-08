@@ -14,11 +14,16 @@ private Connection conn = ConnectionFactory.getConnection();
 		this.conn = conn;
 	}
 	@Override
-	public void createOffer(Offerings offer) {
+	public void createOfferSQL(Offerings offer) {
 		// TODO Auto-generated method stub
 		String sql = "insert into offer(offerid, username, vinnum, offer, status) values("
 		+ offer.getOffer_id()+",'"+offer.getUserName()+"','"+offer.getVinNo()+"',"+offer.getOffer()+",'"
 		+ offer.getStatus()+"');";
+	}
+	@Override
+	public Offerings createOffer() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -4,5 +4,6 @@ import com.revature.pojos.Offerings;
 
 public interface OfferServiceP2 {
 
-	public void createOffer(Offerings offer);
+	public Offerings createOffer();
+	public void createOfferSQL(Offerings offer);
 }
