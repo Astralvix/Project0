@@ -1,5 +1,7 @@
 package com.revature.service;
 
+import static com.revature.util.LoggerUtil.trace;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -107,5 +109,26 @@ private Connection conn = ConnectionFactory.getConnection();
 			e.printStackTrace();
 		}
 		return listOfPays;
+	}
+
+	@Override
+	public void setPaymentPlan(int pay_id, double base_price, double due_amount, double monthly_pay, int months_left) {
+		// TODO Auto-generated method stub
+String sql = "update cardealer.payment set base_price = ?, due_amount = ?, monthly_pay = ?, months_left = ? where payment.pay_id = ?;";
+		
+		try {
+		PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setDouble(1, base_price);
+			stmt.setDouble(2, due_amount);
+			stmt.setDouble(3, monthly_pay);
+			stmt.setInt(4, months_left);
+			stmt.setInt(5, pay_id);
+			stmt.executeUpdate();
+			trace("pay status has been updated");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }

@@ -84,7 +84,7 @@ public class Driver {
 								  carList = CS.getMostCars(); 
 								  for(int x = 0; x < carList.size(); x++) { 
 								  Car carloop = carList.get(x); 
-								  System.out.println("PayId: " + carloop.getVinNo()); 
+								  System.out.println("Car VinNo: " + carloop.getVinNo()); 
 								  System.out.println("Car Make: " +carloop.getMake());
 								  System.out.println("Car Model: " + carloop.getModel());
 								  System.out.println("Car Year: " + carloop.getYear());
@@ -208,9 +208,33 @@ public class Driver {
 									  CS.updateOwner(vinnum, username);
 									  break;
 								  case "7":
+									  int payid;
+									  int monthsLeft;
+									  double base_price;
+									  double due_amount;
+									  double monthly_pay;
+									  System.out.println("Enter PayId: ");
+									  payid = sc.nextInt();
+									  sc.nextLine();
+									  System.out.println("Enter Base Price: ");
+									  base_price = sc.nextDouble();
+									  sc.nextLine();
+									  System.out.println("Enter Due Amount: ");
+									  due_amount = sc.nextDouble();
+									  sc.nextLine();
+									  System.out.println("Enter Monthly Pay: ");
+									  monthly_pay = sc.nextDouble();
+									  sc.nextLine();
+									  System.out.println("Enter Months Left: ");
+									  monthsLeft = sc.nextInt();
+									  sc.nextLine();
+									  PS.setPaymentPlan(payid, base_price, due_amount, monthly_pay, monthsLeft);
+									  System.out.println("Payment Plan Initialized!");
+									break;
+								  case "8":
 									  System.out.println("Exit");
-									 // toggle = false;
-									  continue rgr;
+										 // toggle = false;
+										  continue rgr;
 								 default:
 								 System.out.println("Invalid Choice!");
 									  break;

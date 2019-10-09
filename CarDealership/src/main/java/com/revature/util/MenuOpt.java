@@ -27,6 +27,7 @@ public class MenuOpt {
 		System.out.println("4.View All Payments");
 		System.out.println("5.View All Cars");
 		System.out.println("6.Set Owner To Car");
-		System.out.println("7.Exit");
+		System.out.println("7.Set Payment Plan");
+		System.out.println("8.Exit");
 	}
 }
