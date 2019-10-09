@@ -5,13 +5,18 @@ import com.revature.dao.CarLotDao;
 import com.revature.dao.OfferListDAO;
 import com.revature.p2.CarServiceP2;
 import com.revature.p2.OfferServiceP2;
+import com.revature.p2.PaymentServiceP2;
 import com.revature.p2.UserServiceP2;
 import com.revature.service.CarServiceImpl;
 import com.revature.service.CarServicePostgres;
 import com.revature.pojos.Car;
+import com.revature.pojos.Offerings;
+import com.revature.pojos.Payment;
 import com.revature.pojos.User;
 import com.revature.service.CarService;
 import com.revature.service.LoginService;
+import com.revature.service.OfferPostgres;
+import com.revature.service.PaymentServicePostgres;
 import com.revature.service.UserServicePostgres;
 import com.revature.util.MenuOpt;
 import static com.revature.util.LoggerUtil.*;
@@ -27,10 +32,16 @@ public class Driver {
 	
 	private static UserServiceP2 OS = new UserServicePostgres();
 	
+	private static OfferServiceP2 OF = new OfferPostgres();
+	
+	private static PaymentServiceP2 PS = new PaymentServicePostgres();
+	
 	public static void main(String[] args) {
 		List<Car> carList = new ArrayList<>();	
-		
-		  Scanner sc = new Scanner(System.in); 
+		List<Offerings> offerList = new ArrayList<>();
+		List<Payment> payList = new ArrayList<>();
+		  
+		Scanner sc = new Scanner(System.in); 
 		  String chk; 
 		  boolean toggle = true;
 		  
@@ -73,7 +84,7 @@ public class Driver {
 								  carList = CS.getMostCars(); 
 								  for(int x = 0; x < carList.size(); x++) { 
 								  Car carloop = carList.get(x); 
-								  System.out.println("Car VinNo: " + carloop.getVinNo()); 
+								  System.out.println("PayId: " + carloop.getVinNo()); 
 								  System.out.println("Car Make: " +carloop.getMake());
 								  System.out.println("Car Model: " + carloop.getModel());
 								  System.out.println("Car Year: " + carloop.getYear());
@@ -99,8 +110,24 @@ public class Driver {
 									  System.out.println("---------------------------");} 
 								  break;
 							  case "3":
+								  String u2 = user1.getUserName();
+								  payList = PS.getMyPayments(u2);
+								  for(int x = 0; x < payList.size(); x++) { 
+									  Payment payloop = payList.get(x); 
+									  System.out.println("PayId: " + payloop.getPayId()); 
+									  System.out.println("Username: " +payloop.getUsername());
+									  System.out.println("VinNo: " + payloop.getVinNo());
+									  System.out.println("Base Price: " + payloop.getBasePrice());
+									  System.out.println("Due Amount: " + payloop.getDue_amount());
+									  System.out.println("Monthly Pay: " + payloop.getMonthly_pay());
+									  System.out.println("Months Left: " + payloop.getMonths_left());
+									  System.out.println("---------------------------");} 
 								  break;
 							  case "4":
+								  Offerings off = OF.createOffer();
+								  off.setUserName(user1.getUserName());
+								  OF.createOfferSQL(off);
+								  info("Offer has been placed by user: "+user1.getUserName());
 								  break;
 							  case "5":
 								  System.out.println("Exit");
@@ -122,6 +149,23 @@ public class Driver {
 									 CS.createCarSQL(car); 
 									  break;
 								  case "2":
+									  int offerid;
+									  String status;
+									  offerList = OF.getAllOffers();
+									  for(int x = 0; x < offerList.size(); x++) { 
+										  Offerings offerloop = offerList.get(x); 
+										  System.out.println("Offer Id: " + offerloop.getOffer_id()); 
+										  System.out.println("Username: " +offerloop.getUserName());
+										  System.out.println("VinNo: " + offerloop.getVinNo());
+										  System.out.println("Offer Amount: " + offerloop.getOffer());
+										  System.out.println("Status: " + offerloop.getStatus());
+										  System.out.println("---------------------------");}
+									  System.out.println("Which Offer Id?:");
+									  offerid = sc.nextInt();
+									  sc.nextLine();
+									  System.out.println("What is the set status?:");
+									  status = sc.nextLine();
+									  OF.setOfferStatus(offerid, status);
 									  break;
 								  case "3":
 									  System.out.println("Enter VinNo Of Car To Be Deleted: ");
@@ -130,10 +174,19 @@ public class Driver {
 									  System.out.println("Car Successfully Removed!");
 									  break;
 								  case "4":
+									 payList = PS.getAllPayments();
+									 for(int x = 0; x < payList.size(); x++) { 
+										  Payment payloop = payList.get(x); 
+										  System.out.println("PayId: " + payloop.getPayId()); 
+										  System.out.println("Username: " +payloop.getUsername());
+										  System.out.println("VinNo: " + payloop.getVinNo());
+										  System.out.println("Base Price: " + payloop.getBasePrice());
+										  System.out.println("Due Amount: " + payloop.getDue_amount());
+										  System.out.println("Monthly Pay: " + payloop.getMonthly_pay());
+										  System.out.println("Months Left: " + payloop.getMonths_left());
+										  System.out.println("---------------------------");} 
 									  break;
 								  case "5":
-									  /*Steps to print all cars*/
-										
 										  carList = CS.getAllCars(); 
 										  for(int x = 0; x < carList.size(); x++) { 
 										  Car carloop = carList.get(x); 
